@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    border-radius: 0 0 10px 10px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.titulo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px;
+}
+
+.table-container {
+overflow-x: auto;
+margin: 20px auto;
+}
+
+table {
+width: 100%;
+max-width: 100%;
+border-collapse: collapse;
+background-color: white;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.responsive-table {
+width: 100%;
+overflow-x: auto;
+}
+
+.responsive-table th, .responsive-table td {
+padding: 8px;
+text-align: left;
+border-top: 1px solid #ddd;
+}
+
+.responsive-table th {
+background-color: #ffedd7;
+}
+
+.responsive-table tbody tr:nth-child(even) {
+background-color: #ffedd7;
+
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+.editar-icon {
+    font-size: 20px;
+    color: #4CAF50;
+    cursor: pointer;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.page-link {
+    margin: 0 5px;
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+
+@media (max-width: 600px) {
+.responsive-table thead {
+      display: none;  
+}
+
+.responsive-table tr {
+      margin-bottom: 0.625em;
+      display: block;
+      border-bottom: 2px solid #ddd;
+}
+
+.responsive-table td {
+     display: block;
+     text-align: right;
+     position: relative;
+     padding-left: 50%;
+}
+
+.responsive-table:last-child { border-bottom: 0;}
+
+.responsive-table td::before {
+     content: attr(data-label);
+     float:left;
+     position: absolute;
+     left: 0;
+     width: 50%;
+     padding-left: 15px;
+     font-weight: bold;
+     text-align: left;
+}
+}

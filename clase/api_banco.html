@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Tasa de Cambio</title>
+</head>
+<body>
+    <br>
+    <b>Solicitud de Tasa de Cambio</b>
+    <br><i>Ejemplo Sencillo</i>
+    <br>
+    <hr align="left" style="width: 300px;">
+    <!-- CONSULTA POR MES -->
+    <br><b><i>Solicitud Por Mes</i></b>
+    <form action="index.php?Consultar=Mes" method="POST">
+        <table border="0">
+            <tbody>
+                <tr>
+                    <th>Año</th>
+                    <td><input type="text" name="Year" id="Year" value="" size="10" /></td>
+                </tr>
+                <tr>
+                    <th>Mes</th>
+                    <td><input type="text" name="Month" id="Month" value="" size="10" /></td>
+                </tr>
+                <tr>
+                    <th>Consultar</th>
+                    <td><input type="submit" value="Ejecutar Consulta" /></td>
+                </tr>
+                <tr>
+                    <th>Resultado</th>
+                    <td><textarea name="ResultadoMes" rows="10" cols="35" readonly="readonly"><?php if (isset($ValorTasaMes)) echo $ValorTasaMes; ?></textarea></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <!-- FIN DE CONSULTA POR MES -->
+    <hr align="left" style="width: 300px;">
+    <!-- CONSULTA POR DIA -->
+    <br><b><i>Solicitud Por Día</i></b>
+    <br>
+    <form action="index.php?Consultar=Dia" method="POST">
+        <table border="0">
+            <tbody>
+                <tr>
+                    <th>Año</th>
+                    <td><input type="text" name="Year_Day" id="Year_Day" value="" size="10" /></td>
+                </tr>
+                <tr>
+                    <th>Mes</th>
+                    <td><input type="text" name="Month_Day" id="Month_Day" value="" size="10" /></td>
+                </tr>
+                <tr>
+                    <th>Día</th>
+                    <td><input type="text" name="Day" id="Day" value="" size="10" /></td>
+                </tr>
+                <tr>
+                    <th>Consultar</th>
+                    <td><input type="submit" value="Ejecutar Consulta" /></td>
+                </tr>
+                <tr>
+                    <th>Resultado</th>
+                    <td><input type="text" name="ResultadoDia" value="<?php if (isset($TasaDiaria)) echo $TasaDiaria; ?> C$" size="10" readonly="readonly" /></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <!-- FIN DE CONSULTA POR DIA -->
+    <script>
+        var Fecha = new Date();
+        var Ano = Fecha.getFullYear();
+        var Mes = Fecha.getMonth() + 1;
+        var Dia = Fecha.getDate();
+        document.getElementById('Year').value = Ano;
+        document.getElementById('Month').value = Mes;
+        document.getElementById('Year_Day').value = Ano;
+        document.getElementById('Month_Day').value = Mes;
+        document.getElementById('Day').value = Dia;
+    </script>
+</body>
+</html>

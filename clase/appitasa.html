@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+</head>
+<body>
+   
+</br>
+<b>Solicitud de Tasa de Cambio</b>
+</br><i>Ejemplo Sencillo</i>
+</br>
+<hr align="left" style="width: 300px;"></hr>  <!-- CODIGO DE LA RAYITA QUE VE- -->
+
+
+<!--
+CODIGO DE CONSULTA POR MES
+-->
+</br><b><i>Solicitud Por Mes</i></b>
+<form action="index.php?Consultar=Mes" method="POST">
+    <table border="0">
+        <tbody>
+            <tr>
+                <th>A&ntilde;o</th>
+                <td><input type="text" name="Year" id="Year" value="" size="10" /></td>
+            </tr>
+            <tr>
+                <th>Mes</th>
+                <td><input type="text" name="Month" id="Month" value="" size="10" /></td>
+            </tr>
+            <tr>
+                <th>Consultar</th>
+                <td><input type="submit" value="Ejecutar Consulta" /></td>
+            </tr>
+            <tr>
+                <th>Resultado</th>
+                <td><textarea name="" rows="10" cols="35" readonly="readonly"><?php echo $ValorTasaMes; ?></textarea>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+<!-- 
+Codigo de JavaScript
+-->
+<script>
+    var Fecha=new Date();   //Declaramos una variable para tomar las Fechas
+    var Ano=Fecha.getFullYear();    //Tomamos el año actual en la variable "Ano""
+    var Mes=Fecha.getMonth()+1;   //Tomamos el mes actual en la variable "Mes"
+    //Le sumamos 1, por que toma como mes inicial "0"
+    document.getElementById('Year').value = Ano;        //Asignamos al campo de texto "Year" el valor del Año
+    document.getElementById('Month').value = Mes;       //Asignamos al campo de texto "Month" el valor del Mes
+</script>
+
+<!--
+FIN DE CODIGO DE CONSULTA POR MES
+-->
+
+<hr align="left" style="width: 300px;"></hr>  <!-- CODIGO DE LA RAYITA QUE VE- -->
+
+<!--
+CODIGO DE CONSULTA POR DIA
+-->
+</br><b><i>Solicitud Por Dia</i></b>
+</br>
+<form action="index.php?Consultar=Dia" method="POST">
+    <table border="0">
+        <tbody>
+            <tr>
+                <th>A&ntilde;o</th>
+                <td><input type="text" name="Year_Day" id="Year_Day" value="" size="10" /></td>
+            </tr>
+            <tr>
+                <th>Mes</th>
+                <td><input type="text" name="Month_Day" id="Month_Day" value="" size="10" /></td>
+            </tr>
+            <tr>
+                <th>Dia</th>
+                <td><input type="text" name="Day" id="Day" value="" size="10" /></td>
+            </tr>
+            <tr>
+                <th>Consultar</th>
+                <td><input type="submit" value="Ejecutar Consulta" /></td>
+            </tr>
+            <tr>
+                <th>Resultado</th>
+                <td><input type="text" name="" value="<?php echo $TasaDiaria; ?>C$" size="10" readonly="readonly" /></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
+
+<!-- 
+Codigo de JavaScript
+-->
+<script>
+    var Fecha=new Date();   //Declaramos una variable para tomar las Fechas
+    var Ano=Fecha.getFullYear();    //Tomamos el año actual en la variable "Ano""
+    var Mes=Fecha.getMonth()+1;   //Tomamos el mes actual en la variable "Mes"
+    var Dia=Fecha.getDate();
+    //Le sumamos 1, por que toma como mes inicial "0"
+    document.getElementById('Year_Day').value = Ano;        //Asignamos al campo de texto "Year" el valor del Año
+    document.getElementById('Month_Day').value = Mes;       //Asignamos al campo de texto "Month" el valor del Mes
+    document.getElementById('Day').value = Dia;       //Asignamos al campo de texto "Day" el valor del Dia
+</script>
+
+<!--
+FIN DE CODIGO DE CONSULTA POR MES
+-->
+
+</body>
+</html>

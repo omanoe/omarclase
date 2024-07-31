@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <title>Leaflet Map</title>
+</head>
+<body>
+    <div id="map" style="height: 400px;"></div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        var map = L.map('map').setView([12.9256, -85.9175], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Obtener la ubicación mediante la API de IPInfo.io
+        fetch('https://ipinfo.io/json')
+            .then(response => response.json())
+            .then(data => {
+                var latitud = parseFloat(data.loc.split(',')[0]);
+                var longitud = parseFloat(data.loc.split(',')[1]);
+
+                // Crear un marcador en la ubicación y añadirlo al mapa
+                L.marker([latitud, longitud]).addTo(map)
+                    .bindPopup('¡Estás aquí!')
+                    .openPopup();
+
+                // Centrar el mapa en la ubicación
+                map.setView([latitud, longitud], 13);
+            })
+            .catch(error => {
+                console.error('Error al obtener la ubicación:', error);
+            });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

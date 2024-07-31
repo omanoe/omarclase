@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Registro</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            width: 100%;
+        }
+
+        header img {
+            width: 50px;
+            height: 50px;
+            vertical-align: middle;
+        }
+
+        header h1 {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 0 0 10px 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input, input[type="radio"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .radio-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="imagenes/logocam.png" alt="Logo">
+        <h1>Catálogo Contable</h1>
+    </div>
+</header>
+
+<form id="registroForm">
+    <label for="cuenta"><strong>Cuenta:</strong></label>
+    <input type="text" id="cuenta" name="cuenta" required>
+
+    <label for="descripcion"><strong>Descripción:</strong></label>
+    <input type="text" id="descripcion" name="descripcion" required>
+
+    <label><strong>Tipo (Deudora/Acreedora):</strong></label>
+    <div class="radio-group">
+        <label for="deudora"><input type="radio" id="deudora" name="tipo" value="Deudora" checked> Deudora</label>
+        <label for="acreedora"><input type="radio" id="acreedora" name="tipo" value="Acreedora"> Acreedora</label>
+    </div>
+
+    <label><strong>Activo/Pasivo:</strong></label>
+    <div class="radio-group">
+        <label for="activo"><input type="radio" id="activo" name="activoPasivo" value="Activo" checked> Activo</label>
+        <label for="pasivo"><input type="radio" id="pasivo" name="activoPasivo" value="Pasivo"> Pasivo</label>
+    </div>
+
+    <button type="button" onclick="registrar()">Registrar</button>
+</form>
+
+<script>
+    function registrar() {
+        const cuenta = document.getElementById('cuenta').value;
+        const descripcion = document.getElementById('descripcion').value;
+        const tipo = document.querySelector('input[name="tipo"]:checked').value;
+        const activoPasivo = document.querySelector('input[name="activoPasivo"]:checked').value;
+
+        // Aquí puedes realizar alguna acción con los datos, como enviarlos a un servidor
+        console.log('Cuenta:', cuenta);
+        console.log('Descripción:', descripcion);
+        console.log('Tipo:', tipo);
+        console.log('Activo/Pasivo:', activoPasivo);
+
+        // Puedes resetear el formulario después de registrar los datos
+        document.getElementById('registroForm').reset();
+    }
+</script>
+
+</body>
+</html>

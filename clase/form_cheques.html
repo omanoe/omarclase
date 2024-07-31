@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Cheques</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Puedes agregar tu propio archivo CSS para estilos personalizados -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .titulo {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .detalle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .detalle-header button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .detalle-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+        }
+
+        .detalle-table th,
+        .detalle-table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: left;
+        }
+
+        .detalle-actions button {
+            margin-right: 10px;
+        }
+
+        .add-detail-button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        :focus {
+  outline: 0;
+  border-color: #2260ff;
+  box-shadow: 0 0 0 4px #b5c9fc;
+}
+
+.mydict div {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.mydict input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.mydict input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em #0043ed;
+  background-color: #dee7ff;
+  z-index: 1;
+  color: #0043ed;
+}
+
+label span {
+  display: block;
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  position: relative;
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+label:last-child span {
+  border-radius: 0 .375em .375em 0;
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="imagenes/logocam.png" alt="Logo" class="logo">
+    <h1 class="titulo">Registro de Cheques</h1>
+</header>
+
+<form id="chequeForm">
+    <label for="noCheque">No. Cheque:</label>
+    <input type="text" id="noCheque" name="noCheque" required>
+
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" required>
+
+    <label for="beneficiario">Beneficiario:</label>
+    <p><input id="beneficiario" autocomplete="off" list="browserdata" name="beneficiario" size="50" type="text" /></p>
+    <datalist id="browserdata">
+    <option>María López</option>
+    <option>Juan Pérez</option>
+    <option>Pedro González</option>
+    <option>Juana Gómez</option>
+    </datalist>
+
+    <label for="observaciones">Observaciones:</label>
+    <textarea id="observaciones" name="observaciones" rows="4"></textarea>
+
+    <label for="monto">Monto:</label>
+    <input type="number" id="monto" name="monto" step="0.01" required>
+
+    <label for="moneda">Moneda:</label>
+    <div class="mydict">
+        <div>
+            <label>
+                <input type="radio" name="radio" checked="">
+                <span>Córdoba</span>
+            </label>
+            <label>
+                <input type="radio" name="radio">
+                <span>Dólar</span>
+            </label>
+
+            
+        </div>
+    </div>
+
+    <label for="cuentaBanco">Cuenta de Banco:</label>
+    <p><input id="cuentaBanco" autocomplete="off" list="browserdatabank" name="cuentaBanco" size="50" type="text" /></p>
+    <datalist id="browserdatabank">
+    <option>111111111 LAFISE</option>
+    <option>222222222 BANPRO</option>
+    <option>333333333 LAFISE</option>
+    <option>444444444 BAC</option>
+    </datalist>
+
+</form>
+<form>
+  <table summary="Formulario de cuentas contables" border="1">
+    <thead>
+      <tr>
+        <th>Cuenta Contable</th>
+        <th>Descripción de la Cuenta</th>
+        <th>Crédito</th>
+        <th>Débito</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="detalleBody">
+      <tr>
+        <td><input type="text" name="cuenta_1" value="1000" /></td>
+        <td><input type="text" name="descripcion_1" value="Caja" /></td>
+        <td><input type="text" name="credito_1" value="0" /></td>
+        <td><input type="text" name="debito_1" value="100" /></td>
+        <td><button type="button" name="accion_1" value="editar">Editar</button></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="cuenta_2" value="2000" /></td>
+        <td><input type="text" name="descripcion_2" value="Bancos" /></td>
+        <td><input type="text" name="credito_2" value="50" /></td>
+        <td><input type="text" name="debito_2" value="0" /></td>
+        <td><button type="button" name="accion_2" value="eliminar">Eliminar</button></td>
+      </tr>
+      <!-- Filas de datos se generarán dinámicamente con JavaScript -->
+    </tbody>
+  </table>
+</form>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("chequeForm");
+        const detalleBody = document.getElementById("detalleBody");
+
+        // Agregar un nuevo registro al detalle
+        document.querySelector(".add-detail-button").addEventListener("click", function() {
+            const newRow = document.createElement("tr");
+            newRow.innerHTML = `
+                <td><input type="text" name="cuentaContable[]"></td>
+                <td><input type="text" name="descripcionCuenta[]"></td>
+                <td><input type="number" name="credito[]"></td>
+                <td><input type="number" name="debito[]"></td>
+                <td>
+                    <button type="button" class="edit-detail-button">Modificar</button>
+                    <button type="button" class="cancel-detail-button">Cancelar</button>
+                </td>
+            `;
+            detalleBody.appendChild(newRow);
+        });
+
+        // Event listeners para los botones en cada fila del detalle
+        detalleBody.addEventListener("click", function(event) {
+            if (event.target.classList.contains("edit-detail-button")) {
+                // Lógica para editar el registro
+                alert("Editar registro");
+            } else if (event.target.classList.contains("cancel-detail-button")) {
+                // Lógica para cancelar el registro
+                alert("Cancelar registro");
+            }
+        });
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Evita que el formulario se envíe
+
+            // Aquí puedes agregar el código para procesar y guardar los datos del cheque
+            // Puedes usar JavaScript para hacer una solicitud AJAX al servidor, por ejemplo
+            // o puedes simplemente mostrar una confirmación al

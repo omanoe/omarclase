@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Contable</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/estilomenu.css">
+    <link rel="stylesheet" href="css/estilocatcontab.css">
+    <style>
+       
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="imagenes/logocam.png" alt="Logo" class="logo">
+    <h1 class="titulo">Catálogo Contable</h1>
+</header>
+<div class="menu">
+    <ul>
+    <li><a href="#">Banco</a>
+       <ul>
+           <li><a href="grid_cheques.html">Elaborar Cheques</a></li>
+           <li><a href="grid_cheques_anul.html">Anulación de Cheques</a></li>
+           <li><a href="ndncdptr.html">ND, NC, DEPOSITOS</a></li>
+           <li><a href="#">Informes</a></li>
+       </ul>
+   </li>
+    <li><a href="#">Contabilidad</a>
+       <ul>
+           <li><a href="cat_contab.html">Jornales</a></li>
+           <li><a href="#">Informes</a></li>
+       </ul>
+   </li>
+    <li><a href="#">Presupuesto</a>
+    <ul>
+    <li><a href="grid_formulacion.html">Formulación</a></li>
+    <li><a href="ejecucionpresup.html">Ejecución</a></li>
+    <li><a href="modpresup.html">Modificaciones</a></li>
+    <li><a href="#">Informes</a></li>
+    </ul>
+    </li>
+    <li><a href="#">Configuraciones</a>
+       <ul>
+       <li><a href="#">Período Fiscal</a></li>
+       <li><a href="#">Período Presupuesto</a></li>
+       </ul>
+       </li>
+    </ul>
+    </div>
+    <a href="form_cat_contab.html"><button class="nuevo-registro">Nuevo Registro</button></a>
+<table>
+    <thead>
+        <tr>
+            <th></th>
+            <th>Cuenta</th>
+            <th>Descripción</th>
+            <th>Tipo</th>
+            <th>Activo/ Pasivo</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Filas de datos se generarán dinámicamente con JavaScript -->
+    </tbody>
+</table>
+
+<div class="pagination"></div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Datos de ejemplo, asegúrate de tener al menos 20 elementos
+        const datos = [
+            { cuenta: "1", descripcion: "Descripción 1", tipo: "Deudora", activoPasivo: "Activo" },
+            { cuenta: "2", descripcion: "Descripción 2", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "3", descripcion: "Descripción 3", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "4", descripcion: "Descripción 4", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "5", descripcion: "Descripción 5", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "6", descripcion: "Descripción 6", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "7", descripcion: "Descripción 7", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "8", descripcion: "Descripción 8", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "9", descripcion: "Descripción 9", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "10", descripcion: "Descripción 10", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "11", descripcion: "Descripción 11", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "12", descripcion: "Descripción 12", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "13", descripcion: "Descripción 13", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "14", descripcion: "Descripción 14", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "15", descripcion: "Descripción 15", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "16", descripcion: "Descripción 16", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "17", descripcion: "Descripción 17", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "18", descripcion: "Descripción 18", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "19", descripcion: "Descripción 19", tipo: "Acreedora", activoPasivo: "Pasivo" },
+            { cuenta: "20", descripcion: "Descripción 20", tipo: "Deudora", activoPasivo: "Activo" },
+
+        ];
+
+        const tbody = document.querySelector("tbody");
+        const filasPorPagina = 20;
+        let paginaActual = 1;
+
+        function mostrarDatos() {
+            const inicio = (paginaActual - 1) * filasPorPagina;
+            const fin = inicio + filasPorPagina;
+            const datosMostrados = datos.slice(inicio, fin);
+
+            tbody.innerHTML = "";
+
+            datosMostrados.forEach(dato => {
+                const fila = document.createElement("tr");
+                fila.innerHTML = `
+                    <td class="edit-icon">&#9998;</td>
+                    <td>${dato.cuenta}</td>
+                    <td>${dato.descripcion}</td>
+                    <td>${dato.tipo}</td>
+                    <td>${dato.activoPasivo}</td>
+                `;
+                tbody.appendChild(fila);
+            });
+        }
+
+        function actualizarPaginacion() {
+            const totalPaginas = Math.ceil(datos.length / filasPorPagina);
+            const paginacion = document.querySelector(".pagination");
+
+            paginacion.innerHTML = "";
+
+            for (let i = 1; i <= totalPaginas; i++) {
+                const enlace = document.createElement("a");
+                enlace.href = "form_cat_contab.html";
+                enlace.textContent = i;
+                enlace.classList.add("page-link");
+                enlace.addEventListener("click", () => {
+                    paginaActual = i;
+                    mostrarDatos();
+                    actualizarPaginacion();
+                });
+                paginacion.appendChild(enlace);
+            }
+        }
+
+        mostrarDatos();
+        actualizarPaginacion();
+    });
+
+</script>
+
+</body>
+
+</html>

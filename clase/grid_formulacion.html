@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Cheques</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/estilomenu.css">
+    <link rel="stylesheet" href="css/estilogridck.css">
+    <link rel="stylesheet" href="css/estilockboton.css">
+   <style>
+
+.center-container {
+            display: inline-block;
+            align-items: center;
+            justify-content: center;
+            /*height: 100vh; /* 100% del alto de la ventana */
+        }
+        .cssbuttons-io-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            text-decoration: none; /* Quita el subrayado del texto en enlaces */
+            /*color: inherit; /* Mantiene el color del texto según el estilo del contenedor */
+        }
+   </style>
+
+</head>
+<body>
+
+<header>
+    <img src="imagenes/logocam.png" alt="Logo" class="logo">
+    <h1 class="titulo">Formulación Presupuestaria</h1>
+</header>
+<div class="menu">
+    <ul>
+    <li><a href="#">Banco</a>
+       <ul>
+           <li><a href="grid_cheques.html">Elaborar Cheques</a></li>
+           <li><a href="grid_cheques_anul.html">Anulación de Cheques</a></li>
+           <li><a href="ndncdptr.html">ND, NC, DEPOSITOS</a></li>
+           <li><a href="#">Informes</a></li>
+       </ul>
+   </li>
+    <li><a href="#">Contabilidad</a>
+       <ul>
+           <li><a href="cat_contab.html">Jornales</a></li>
+           <li><a href="#">Informes</a></li>
+       </ul>
+   </li>
+    <li><a href="#">Presupuesto</a>
+    <ul>
+    <li><a href="grid_formulacion.html">Formulación</a></li>
+    <li><a href="ejecucionpresup.html">Ejecución</a></li>
+    <li><a href="modpresup.html">Modificaciones</a></li>
+    <li><a href="#">Informes</a></li>
+    </ul>
+    </li>
+    <li><a href="#">Configuraciones</a>
+       <ul>
+       <li><a href="#">Período Fiscal</a></li>
+       <li><a href="#">Período Presupuesto</a></li>
+       </ul>
+       </li>
+    </ul>
+    </div>
+    <div class="center-container">
+    <a href="formulacion.html" class="cssbuttons-io-button">
+    <button class="cssbuttons-io-button">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"></path><path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path></svg>
+        <span>Nuevo Registro</span>
+      </button></a>
+    </div>
+<table class="responsive-table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>Cuenta</th>
+            <th>Año</th>
+            <th>Area</th>
+            <th>Descripción Cuenta</th>
+            <th>Acumulado</th>
+
+        </tr>
+    </thead>
+    <tbody id="table-body">
+        <!-- Filas de datos se generarán dinámicamente con JavaScript -->
+    </tbody>
+</table>
+
+<div class="pagination">
+    <!-- Botones de paginación se generarán dinámicamente con JavaScript -->
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    // Datos de ejemplo, reemplaza con tus datos reales
+    const datos = [
+        { id: 1, noCheque: "2024", fecha: "Contabilidad", beneficiario: "Papelería", monto: "$500.00", moneda: "Dólar", estado: "Activo" },
+        // Agrega más datos según sea necesario
+    ];
+
+    const tbody = document.getElementById("table-body");
+    const filasPorPagina = 5; // Puedes ajustar según tus necesidades
+    let paginaActual = 1;
+
+    function mostrarDatos() {
+        const inicio = (paginaActual - 1) * filasPorPagina;
+        const fin = inicio + filasPorPagina;
+        const datosMostrados = datos.slice(inicio, fin);
+
+        tbody.innerHTML = "";
+
+        datosMostrados.forEach(dato => {
+            const fila = document.createElement("tr");
+            fila.innerHTML = `
+                <td class="editar-icon"><a href="formulacion.html">&#9998;</a></td>
+                <td>${dato.id}</td>
+                <td>${dato.noCheque}</td>
+                <td>${dato.fecha}</td>
+                <td>${dato.beneficiario}</td>
+                <td>${dato.monto}</td>
+            `;
+            tbody.appendChild(fila);
+        });
+    }
+
+    function actualizarPaginacion() {
+        const totalPaginas = Math.ceil(datos.length / filasPorPagina);
+        const paginacion = document.querySelector(".pagination");
+
+        paginacion.innerHTML = "";
+
+        for (let i = 1; i <= totalPaginas; i++) {
+            const enlace = document.createElement("a");
+            enlace.href = "formulacion.html"; // Enlace sin destino
+            enlace.textContent = i;
+            enlace.classList.add("page-link");
+            enlace.addEventListener("click", (event) => {
+                event.preventDefault(); // Evitar la navegación predeterminada
+                paginaActual = i;
+                mostrarDatos();
+                actualizarPaginacion();
+            });
+            paginacion.appendChild(enlace);
+        }
+    }
+
+    mostrarDatos();
+    actualizarPaginacion();
+});
+
+</script>
+
+</body>
+</html>
